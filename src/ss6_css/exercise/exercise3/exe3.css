@@ -1,0 +1,22 @@
+h1{
+    font-weight: bold;
+    color: rebeccapurple;
+    font-size: 35px;
+}
+h5 {
+    font-size: 25px;
+    border: 1px solid black;
+}
+a:hover{
+    color: crimson;
+}
+p {
+    text-indent: 20px;
+    text-align: justify;
+    width: 70%;
+}
+
+div {
+    position: relative;
+    text-align: center;
+}

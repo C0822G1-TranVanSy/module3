@@ -1,0 +1,29 @@
+.strong1{
+    font-weight: bold;
+    color: black;
+}
+a{
+    text-decoration: none;
+}
+#color1{
+    color: dodgerblue;
+}
+#color2{
+    color: black;
+}
+p{
+    text-indent: 30px;
+    text-align: justify;
+}
+sup{
+    color: blue;
+    font-size: xx-small;
+}
+div {
+    position: relative;
+    width: 60%;
+    font-size: 15px;
+    top: 20px;
+    left: 20px;
+}
+
