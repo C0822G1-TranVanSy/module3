@@ -3,7 +3,6 @@ package controller;
 import model.Product;
 import service.IProductService;
 import service.impl.ProductServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +48,6 @@ public class ProductServlet extends HttpServlet {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -65,7 +63,6 @@ public class ProductServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -109,8 +106,6 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "view":
                 viewCustomer(request, response);
-                break;
-            case "find":
                 break;
             default:
                 showList(request, response);
@@ -190,5 +185,4 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }

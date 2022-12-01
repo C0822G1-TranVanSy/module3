@@ -18,7 +18,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<a href="/product?action=create" class="btn btn-outline-primary">Thêm mới</a>
+<a href="/product?action=create" class="btn btn-outline-warning">Thêm mới</a>
 
 <table class="table table-striped">
     <tr>
@@ -38,9 +38,9 @@
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>${product.brand}</td>
-            <td><a href="${pageContext.request.contextPath}/product?action=update&id=${product.getId()}">Update</a>
+            <td><a href="${pageContext.request.contextPath}/product?action=update&id=${product.getId()}" class="btn btn-primary">Update</a>
             </td>
-            <td><a href="${pageContext.request.contextPath}/product?action=delete&id=${product.getId()}">Delete</a>
+            <td><a href="${pageContext.request.contextPath}/product?action=delete&id=${product.getId()}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
     </c:forEach>

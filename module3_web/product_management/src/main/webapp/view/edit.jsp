@@ -12,24 +12,31 @@
 </head>
 <body>
 <form method="post">
-
     <table>
         <tr><input type="hidden" name="id" value="${product.id}" ></tr>
         <tr>
             <td>Nhập name:</td>
-            <td><input type="text" name="name" value="${product.name}" ></td>
+            <td><label>
+                <input type="text" name="name" value="${product.name}" >
+            </label></td>
         </tr>
         <tr>
             <td>Nhập giá:</td>
-            <td><input type="text" name="price" value="${product.price}"></td>
+            <td><label>
+                <input type="text" name="price" value="${product.price}">
+            </label></td>
         </tr>
         <tr>
             <td>Nhập mô tả:</td>
-            <td><input type="text" name="description" value="${product.description}"></td>
+            <td><label>
+                <input type="text" name="description" value="${product.description}">
+            </label></td>
         </tr>
         <tr>
             <td>Nhập hãng sản xuất:</td>
-            <td><input type="text" name="brand" value="${product.brand}"></td>
+            <td><label>
+                <input type="text" name="brand" value="${product.brand}">
+            </label></td>
         </tr>
         <tr><td><button type="submit">Save</button></td></tr>
     </table>
