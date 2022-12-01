@@ -12,11 +12,33 @@
 </head>
 <body>
 <form method="post">
-    Nhập name: <input type="text" name="name"><br>
-    Nhập giá: <input type="text" name="price"><br>
-    Nhập mô tả: <input type="text" name="description"><br>
-    Nhập hãng sản xuất: <input type="text" name="brand"><br>
-    <button type="submit">Save</button>
+    <table>
+        <tr>
+            <td>Nhập name:</td>
+            <td><label>
+                <input type="text" name="name">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Nhập giá:</td>
+            <td><label>
+                <input type="text" name="price">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Nhập mô tả:</td>
+            <td><label>
+                <input type="text" name="description">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Nhập hãng sản xuất:</td>
+            <td><label>
+                <input type="text" name="brand">
+            </label></td>
+        </tr>
+        <tr><td><button type="submit">Save</button></td></tr>
+    </table>
 </form>
 </body>
 </html>
