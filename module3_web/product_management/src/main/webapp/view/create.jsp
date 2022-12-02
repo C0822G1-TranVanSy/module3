@@ -37,8 +37,13 @@
                 <input type="text" name="brand">
             </label></td>
         </tr>
-        <tr><td><button type="submit">Save</button></td></tr>
+        <tr>
+            <td><button type="submit">Save</button></td>
+            <td><a href="/product">Back to customer list</a></td>
+        </tr>
+
     </table>
 </form>
+
 </body>
 </html>
