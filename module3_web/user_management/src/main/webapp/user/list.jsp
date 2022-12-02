@@ -21,8 +21,8 @@
 </form>
 
 <div align="center">
-    <table border="1" cellpadding="5">
-        <caption><h2>List of Users</h2></caption>
+    <caption><h2>List of Users</h2></caption>
+    <table border="1" cellpadding="5" class="table table-striped">
         <tr>
             <th>ID</th>
             <th>Name</th>
