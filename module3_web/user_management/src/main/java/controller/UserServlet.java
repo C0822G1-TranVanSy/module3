@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "UserServlet",urlPatterns = "/users")
+@WebServlet(name = "UserServlet", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private IUserService userService;
@@ -24,7 +24,9 @@ public class UserServlet extends HttpServlet {
     public void init() {
         userService = new UserServiceImpl();
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -38,7 +40,10 @@ public class UserServlet extends HttpServlet {
                     updateUser(request, response);
                     break;
                 case "search":
-                    searchUser(request,response);
+                    searchUser(request, response);
+                case "delete":
+                    deleteUser(request, response);
+                    break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -47,9 +52,9 @@ public class UserServlet extends HttpServlet {
 
     private void searchUser(HttpServletRequest request, HttpServletResponse response) {
         String country = request.getParameter("country");
-        request.setAttribute("listUser",userService.searchUser(country));
+        request.setAttribute("listUser", userService.searchUser(country));
         try {
-            request.getRequestDispatcher("user/list.jsp").forward(request,response);
+            request.getRequestDispatcher("user/list.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -57,6 +62,7 @@ public class UserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -69,9 +75,6 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "edit":
                     showEditForm(request, response);
-                    break;
-                case "delete":
-                    deleteUser(request, response);
                     break;
                 default:
                     listUser(request, response);
@@ -113,8 +116,9 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
         userService.insertUser(newUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-        dispatcher.forward(request, response);
+        listUser(request,response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+//        dispatcher.forward(request, response);
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
@@ -133,11 +137,17 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        userService.deleteUser(id);
-        List<User> listUser = userService.selectAllUsers();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
-        dispatcher.forward(request, response);
+        boolean check = userService.deleteUser(id);
+        String mess = "Xóa Không thành công";
+        if(check){
+            mess = "Đã xóa thành công";
+        }
+        request.setAttribute("mess",mess);
+        listUser(request,response);
+//        List<User> listUser = userService.selectAllUsers();
+//        request.setAttribute("listUser", listUser);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+//        dispatcher.forward(request, response);
     }
 }
 

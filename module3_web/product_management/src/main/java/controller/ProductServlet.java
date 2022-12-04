@@ -84,7 +84,11 @@ public class ProductServlet extends HttpServlet {
         String brand = request.getParameter("brand");
         Product product = new Product(id, name, price, description, brand);
         productService.create(product);
-        showList(request, response);
+        try {
+            response.sendRedirect("/product");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

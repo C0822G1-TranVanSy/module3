@@ -118,12 +118,15 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     public boolean deleteUser(int id) throws SQLException {
-        boolean rowDeleted;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
-            statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
+        Connection connection = getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(DELETE_USERS_SQL);
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return rowDeleted;
+        return false;
     }
 
     public boolean updateUser(User user) throws SQLException {

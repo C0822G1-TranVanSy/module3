@@ -40,8 +40,10 @@
             <td>${product.brand}</td>
             <td><a href="${pageContext.request.contextPath}/product?action=update&id=${product.getId()}" class="btn btn-primary">Update</a>
             </td>
-            <td><a href="${pageContext.request.contextPath}/product?action=delete&id=${product.getId()}" class="btn btn-danger">Delete</a>
+            <td>
+                <a href="${pageContext.request.contextPath}/product?action=delete&id=${product.getId()}" class="btn btn-danger">Delete</a>
             </td>
+
         </tr>
     </c:forEach>
 </table>
