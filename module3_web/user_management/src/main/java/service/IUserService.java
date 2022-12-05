@@ -17,4 +17,14 @@ public interface IUserService {
     public boolean updateUser(User user) throws SQLException;
 
     List<User> searchUser(String country);
+
+    User getUserById(int id);
+
+    void insertUserStore(User user);
+
+    List<User> displayList();
+
+    boolean editUser(User user);
+
+    boolean removeUser(int id);
 }

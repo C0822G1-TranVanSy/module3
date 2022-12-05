@@ -41,6 +41,7 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "search":
                     searchUser(request, response);
+                    break;
                 case "delete":
                     deleteUser(request, response);
                     break;
@@ -87,7 +88,7 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<User> listUser = userService.selectAllUsers();
+        List<User> listUser = userService.displayList();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
@@ -117,8 +118,6 @@ public class UserServlet extends HttpServlet {
         User newUser = new User(name, email, country);
         userService.insertUser(newUser);
         listUser(request,response);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-//        dispatcher.forward(request, response);
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
@@ -127,9 +126,8 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-
-        User book = new User(id, name, email, country);
-        userService.updateUser(book);
+        User user = new User(id, name, email, country);
+        userService.editUser(user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }
@@ -137,17 +135,13 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        boolean check = userService.deleteUser(id);
+        boolean check = userService.removeUser(id);
         String mess = "Xóa Không thành công";
         if(check){
             mess = "Đã xóa thành công";
         }
         request.setAttribute("mess",mess);
         listUser(request,response);
-//        List<User> listUser = userService.selectAllUsers();
-//        request.setAttribute("listUser", listUser);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
-//        dispatcher.forward(request, response);
     }
 }
 

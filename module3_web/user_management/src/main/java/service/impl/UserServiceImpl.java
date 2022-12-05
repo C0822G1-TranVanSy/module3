@@ -26,6 +26,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public List<User> displayList() {
+        return userRepository.displayList();
+    }
+
+    @Override
+    public boolean editUser(User user) {
+        return userRepository.editUser(user);
+    }
+
+    @Override
+    public boolean removeUser(int id) {
+        return userRepository.removeUser(id);
+    }
+
+    @Override
     public boolean deleteUser(int id) throws SQLException {
         return userRepository.deleteUser(id);
     }
@@ -38,5 +53,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<User> searchUser(String country) {
         return userRepository.searchUser(country);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepository.getUserById(id);
+    }
+
+    @Override
+    public void insertUserStore(User user) {
+        userRepository.insertUserStore(user);
     }
 }

@@ -25,7 +25,7 @@
             <form action="/users?action=create" method="post" class="form-xl">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Thêm mới</h5>
-                <button onclick="add(name,email,country)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button onclick="add('${user.name}','${user.email}','${user.country}')" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mb-3 row">
