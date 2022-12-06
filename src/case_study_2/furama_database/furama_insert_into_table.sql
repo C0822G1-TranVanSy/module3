@@ -134,3 +134,6 @@ values
 (1,3,1),
 (1,2,2),
 (12,2,2);
+
+set sql_safe_updates = 1;
+set foreign_key_checks = 1;

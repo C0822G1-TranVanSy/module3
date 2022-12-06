@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: OS
@@ -9,62 +10,72 @@
 <html>
 <head>
     <title>Create Customer</title>
+    <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
 </head>
+<script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <body>
+<%@include file="../include/header.jsp"%>
+<h1 class="text-center">Thêm mới Khách hàng</h1>
 <form action="/customer?action=insert" method="post">
-<div class="mb-3 row">
-    Customer Type Name
-    <select name="customer_type_id">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-    </select>
-</div>
-<div class="mb-3 row">
-    <label for="staticName" class="col-sm-2 col-form-label">Name</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticName" name= "name">
+    <div class="m-2 row">
+        <div class="col-sm-2">Customer Type Name</div>
+        <div class="col-sm-10">
+        <select name="customer_type_id" class="form-select">
+          <c:forEach var="ct" items="${customerTypeList}">
+              <option value="${ct.id}">${ct.name}</option>
+          </c:forEach>
+        </select>
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticDate" class="col-sm-2 col-form-label">Date Of Birth</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticDate" name= "date_of_birth">
+    <div class="m-2 row">
+        <label for="staticName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticName" name="name">
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticGender" class="col-sm-2 col-form-label">Gender</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticGender" name= "gender">
+    <div class="m-2 row">
+        <label for="staticDate" class="col-sm-2 col-form-label">Date Of Birth</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="staticDate" name="date_of_birth">
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticIdCard" class="col-sm-2 col-form-label">ID Card</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticIdCard" name= "id_card">
+    <div class="m-2 row">
+        <div class="col-sm-2">Gender</div>
+        <div class="col-sm-10">
+        <label>
+            <input type="radio" name="gender" value="true">
+        </label>Nam
+        <label>
+            <input type="radio" name="gender" value="false">
+        </label>Nữ
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticPhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticPhoneNumber" name= "phone_number">
+    <div class="m-2 row">
+        <label for="staticIdCard" class="col-sm-2 col-form-label">ID Card</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticIdCard" name="id_card">
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticEmail" name= "email">
+    <div class="m-2 row">
+        <label for="staticPhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticPhoneNumber" name="phone_number">
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticAddress" class="col-sm-2 col-form-label">Address</label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="staticAddress" name= "address">
+    <div class="m-2 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticEmail" name="email">
+        </div>
     </div>
-</div>
-    <button type="submit">Save</button>
+    <div class="m-2 row">
+        <label for="staticAddress" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticAddress" name="address">
+        </div>
+    </div>
+    <button type="submit" class="d-flex justify-content-center" style="margin: 0 auto">Save</button>
 </form>
+<%@include file="../include/footer.jsp"%>
 </body>
 </html>

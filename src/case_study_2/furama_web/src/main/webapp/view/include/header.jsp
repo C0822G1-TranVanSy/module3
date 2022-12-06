@@ -2,7 +2,7 @@
 
 <div class="m-2">
     <div class="d-flex justify-content-between text-center">
-        <span><img src="../picture/logo.png" height="100" width="63" alt="logo lỗi"/></span>
+        <span><img src="view/picture/logo.png" height="100" width="63" alt="logo lỗi"/></span>
         <span class="d-flex align-items-center">Trần Văn Sỹ</span>
     </div>
 </div>
