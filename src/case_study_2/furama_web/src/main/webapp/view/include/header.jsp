@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../../../bootstrap-5.1.3-dist/css/bootstrap.css">
-</head>
-<body>
-<script src="../../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="m-2">
     <div class="d-flex justify-content-between text-center">
-        <span><img src="picture/logo.png" height="100" width="63" alt="logo lỗi"/></span>
-        <span class="d-flex align-items-center">Nguyễn Văn A</span>
+        <span><img src="../picture/logo.png" height="100" width="63" alt="logo lỗi"/></span>
+        <span class="d-flex align-items-center">Trần Văn Sỹ</span>
     </div>
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-light " style="background: #046056">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
@@ -23,13 +16,13 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Employee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Customer</a>
+                    <a class="nav-link active" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Service</a>
@@ -45,23 +38,3 @@
         </div>
     </div>
 </nav>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
-        <ul class="list-group vh-100 overflow-scroll" style="border: 1px solid #7952b3;">
-            <li class="list-group-item ">An active item</li>
-            <li class="list-group-item ">A second item</li>
-            <li class="list-group-item ">A third item</li>
-            <li class="list-group-item ">An active item</li>
-        </ul>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-        <div class="row">
-            <img src="picture/body.jpg" height="450" width="800" alt="ảnh lỗi"/>
-            <p>THIS WORLD CLASS RESORT, FURAMA DANANG, REPUTABLE FOR BEING A CULINARY RESORT IN VIETNAM</p>
-        </div>
-    </div>
-</div>
-<div class="row m-2"><span class="d-flex justify-content-center">Contract Us</span></div>
-</body>
-</html>
