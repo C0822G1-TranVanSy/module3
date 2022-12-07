@@ -34,4 +34,9 @@ public class CustomerService implements ICustomerService {
     public boolean deleteCustomer(int id) {
         return customerRepository.deleteCustomer(id);
     }
+
+    @Override
+    public List<Customer> findCustomerByName(String customerName, String customerPhoneNumber, String customerAddress) {
+        return customerRepository.findCustomerByName(customerName,customerPhoneNumber,customerAddress);
+    }
 }

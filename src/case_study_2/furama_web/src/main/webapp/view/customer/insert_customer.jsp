@@ -16,6 +16,7 @@
 <body>
 <%@include file="../include/header.jsp"%>
 <h1 class="text-center">Thêm mới Khách hàng</h1>
+<h3 class="text-success">${mess}</h3>
 <form action="/customer?action=insert" method="post">
     <div class="m-2 row">
         <div class="col-sm-2">Customer Type Name</div>

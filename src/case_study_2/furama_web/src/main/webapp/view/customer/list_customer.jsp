@@ -14,13 +14,26 @@
 </head>
 <body>
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+
 <%@include file="../include/header.jsp" %>
+
 <a href="/customer?action=insert" class="btn-dark">Thêm mới</a>
+
 <h2 class="d-flex justify-content-center text-danger">Customer List</h2>
+<h3 class="text-success">${mess}</h3>
+<%--Search--%>
+<form class="d-flex" action="/customer?action=search" method="post">
+    <input class="form-control me-2" type="search" placeholder="Search Name" aria-label="Search" name="name">
+    <input class="form-control me-2" type="search" placeholder="Search Phone Number" aria-label="Search"
+           name="phone_number">
+    <input class="form-control me-2" type="search" placeholder="Search Address" aria-label="Search" name="address">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
 <table class="table table-striped">
     <tr>
         <th>STT</th>
-        <th>Customer Type ID</th>
+        <th>Customer Type Name</th>
         <th>Customer Name</th>
         <th>Date Of Birth</th>
         <th>Gender</th>
@@ -48,7 +61,7 @@
             <td>${customer.email}</td>
             <td>${customer.address}</td>
             <td>
-                <button onclick="infoEdit('${customer.getId()}','${customer.getName()}','${customer.getDateOfBirth()}',
+                <button onclick="infoEdit('${customer.getId()}','${customer.customerType.getId()}','${customer.getName()}','${customer.getDateOfBirth()}',
                         '${customer.getIdCard()}','${customer.getPhoneNumber()}','${customer.getEmail()}','${customer.getAddress()}')"
                         type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">
                     Edit
@@ -103,7 +116,7 @@
                     <div class="m-2 row">
                         <label class="col-sm-3 col-form-label">Customer Type Name</label>
                         <div class="col-sm-9">
-                            <select class="form-select" name="customer_type_id">
+                            <select class="form-select" name="customer_type_id" id="customerTypeIdEdit">
                                 <c:forEach var="ct" items="${customerTypeList}">
                                     <option value="${ct.id}">${ct.name}</option>
                                 </c:forEach>
@@ -124,13 +137,9 @@
                     </div>
                     <div class="m-2 row">
                         <div class="col-sm-3">Gender</div>
-                        <div class="col-sm-9">
-                            <label>
-                                <input type="radio" name="gender" checked value="true">
-                            </label> Nam
-                            <label>
-                                <input type="radio" name="gender" value="false">
-                            </label> Nữ
+                        <div class="col-sm-9" >
+                                <label><input type="radio" name="gender" value="true" <c:if test="${customer.gender}">checked</c:if>>Nam</label>
+                                <label><input type="radio" name="gender" value="false" <c:if test="${!customer.gender}">checked</c:if>>Nữ</label>
                         </div>
                     </div>
                     <div class="m-2 row">
@@ -174,8 +183,9 @@
         document.getElementById("deleteName").innerText = name;
     }
 
-    function infoEdit(id, name, date_of_birth, id_card, phone_number, email, address) {
+    function infoEdit(id, customerTypeId, name, date_of_birth, id_card, phone_number, email, address) {
         document.getElementById("idEdit").value = id;
+        document.getElementById("customerTypeIdEdit").value = customerTypeId;
         document.getElementById("nameEdit").value = name;
         document.getElementById("dateEdit").value = date_of_birth;
         document.getElementById("idCardEdit").value = id_card;

@@ -21,6 +21,7 @@ public class CustomerServlet extends HttpServlet {
     ICustomerTypeRepository customerTypeRepository = new CustomerTypeService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -35,6 +36,22 @@ public class CustomerServlet extends HttpServlet {
             case "delete":
                 deleteCustomer(request, response);
                 break;
+            case "search":
+                searchCustomer(request, response);
+                break;
+        }
+    }
+
+    private void searchCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String phoneNumber = request.getParameter("phone_number");
+        String address = request.getParameter("address");
+        List<Customer> customerList = customerService.findCustomerByName(name,phoneNumber,address);
+        request.setAttribute("customerList",customerList);
+        try {
+            request.getRequestDispatcher("/view/customer/list_customer.jsp").forward(request,response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -42,10 +59,11 @@ public class CustomerServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String mess = "Xóa Không thành công";
         boolean check = customerService.deleteCustomer(id);
-        if(check){
+        if (check) {
             mess = "Xóa Thành công";
         }
-        displayListCustomer(request,response);
+        request.setAttribute("mess",mess);
+        displayListCustomer(request, response);
     }
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -59,13 +77,14 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         CustomerType customerType = new CustomerType(customer_type_id);
-        Customer customer = new Customer(id,customerType, name, dateOfBirth, gender, idCard, phoneNumber, email, address);
+        Customer customer = new Customer(id, customerType, name, dateOfBirth, gender, idCard, phoneNumber, email, address);
         boolean check = customerService.editCustomer(customer);
         String mess = "Cập nhật không thành công";
-        if(check){
+        if (check) {
             mess = "Cập nhật thành công";
         }
-        displayListCustomer(request,response);
+        request.setAttribute("mess",mess);
+        displayListCustomer(request, response);
     }
 
     private void insertCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -84,6 +103,8 @@ public class CustomerServlet extends HttpServlet {
         if (check) {
             mess = "Thêm mới thành công";
         }
+        request.setAttribute("mess",mess);
+        request.setAttribute("customerTypeList", customerTypeRepository.findAllCustomerType());
         try {
             request.getRequestDispatcher("/view/customer/insert_customer.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
@@ -92,6 +113,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
