@@ -25,7 +25,7 @@
                     <a class="nav-link active" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Service</a>
+                    <a class="nav-link active" href="/facility">Service</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Contract</a>

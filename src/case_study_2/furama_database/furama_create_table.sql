@@ -93,6 +93,7 @@ create table facility(
   number_of_floors int, 
   facility_free text
 );
+
 create table attach_facility(
   id int primary key auto_increment, 
   `name` varchar(45) not null, 

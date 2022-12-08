@@ -134,6 +134,6 @@ values
 (1,3,1),
 (1,2,2),
 (12,2,2);
-
+select c.*,ct.name as customer_type_name from customer c join customer_type ct on c.customer_type_id = ct.id where c.name like "%Đ%" and c.phone_number like "%1%" and c.address like "%c%";
 set sql_safe_updates = 1;
 set foreign_key_checks = 1;

@@ -17,7 +17,7 @@
 
 <%@include file="../include/header.jsp" %>
 
-<a href="/customer?action=insert" class="btn-dark">Thêm mới</a>
+<a href="/customer?action=insert" class="btn btn-warning">Thêm mới</a>
 
 <h2 class="d-flex justify-content-center text-danger">Customer List</h2>
 <h3 class="text-success">${mess}</h3>
@@ -30,20 +30,23 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover" id="tableStudent">
+    <thead>
     <tr>
-        <th>STT</th>
-        <th>Customer Type Name</th>
-        <th>Customer Name</th>
-        <th>Date Of Birth</th>
-        <th>Gender</th>
-        <th>ID Card</th>
-        <th>Phone Number</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th scope="col">STT</th>
+        <th scope="col">Customer Type Name</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">Gender</th>
+        <th scope="col">ID Card</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach var="customer" items="${customerList}" varStatus="status">
         <tr>
             <td>${status.count}</td>
@@ -62,7 +65,7 @@
             <td>${customer.address}</td>
             <td>
                 <button onclick="infoEdit('${customer.getId()}','${customer.customerType.getId()}','${customer.getName()}','${customer.getDateOfBirth()}',
-                        '${customer.getIdCard()}','${customer.getPhoneNumber()}','${customer.getEmail()}','${customer.getAddress()}')"
+                        '${customer.getIdCard()}','${customer.getPhoneNumber()}','${customer.getEmail()}','${customer.getAddress()}','${customer.gender}')"
                         type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">
                     Edit
                 </button>
@@ -75,8 +78,9 @@
             </td>
         </tr>
     </c:forEach>
-
+    </tbody>
 </table>
+
 <%@include file="../include/footer.jsp" %>
 
 <%-- modal delete--%>
@@ -138,8 +142,8 @@
                     <div class="m-2 row">
                         <div class="col-sm-3">Gender</div>
                         <div class="col-sm-9" >
-                                <label><input type="radio" name="gender" value="true" <c:if test="${customer.gender}">checked</c:if>>Nam</label>
-                                <label><input type="radio" name="gender" value="false" <c:if test="${!customer.gender}">checked</c:if>>Nữ</label>
+                                <label><input type="radio" name="gender" value="true" id="male">Nam</label>
+                                <label><input type="radio" name="gender" value="false" id="female">Nữ</label>
                         </div>
                     </div>
                     <div class="m-2 row">
@@ -183,7 +187,7 @@
         document.getElementById("deleteName").innerText = name;
     }
 
-    function infoEdit(id, customerTypeId, name, date_of_birth, id_card, phone_number, email, address) {
+    function infoEdit(id, customerTypeId, name, date_of_birth, id_card, phone_number, email, address, gender) {
         document.getElementById("idEdit").value = id;
         document.getElementById("customerTypeIdEdit").value = customerTypeId;
         document.getElementById("nameEdit").value = name;
@@ -192,7 +196,26 @@
         document.getElementById("phoneNumberEdit").value = phone_number;
         document.getElementById("emailEdit").value = email;
         document.getElementById("addressEdit").value = address;
+        if (gender === "true") {
+            document.getElementById("male").checked = true;
+            document.getElementById("female").checked = false;
+        } else {
+            document.getElementById("male").checked = false;
+            document.getElementById("female").checked = true;
+        }
     }
+</script>
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        } );
+    } );
 </script>
 </body>
 </html>
