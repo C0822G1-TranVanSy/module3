@@ -209,12 +209,15 @@
 <script src="../../datatables/js/jquery.dataTables.min.js"></script>
 <script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
 <script>
+
     $(document).ready(function() {
         $('#tableStudent').dataTable( {
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 5
         } );
+
+        // $("#edit").modal('show');
     } );
 </script>
 </body>

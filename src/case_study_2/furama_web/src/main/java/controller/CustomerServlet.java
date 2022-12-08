@@ -1,11 +1,11 @@
 package controller;
 
-import model.Customer;
-import model.CustomerType;
+import model.customer.Customer;
+import model.customer.CustomerType;
 import repository.ICustomerTypeRepository;
 import service.ICustomerService;
-import service.impl.CustomerService;
-import service.impl.CustomerTypeService;
+import service.impl.customer.CustomerService;
+import service.impl.customer.CustomerTypeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -68,7 +68,7 @@ public class CustomerServlet extends HttpServlet {
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        int customer_type_id = Integer.parseInt(request.getParameter("customer_type_id"));
+        int customerTypeId = Integer.parseInt(request.getParameter("customer_type_id"));
         String name = request.getParameter("name");
         String dateOfBirth = request.getParameter("date_of_birth");
         boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
@@ -76,7 +76,7 @@ public class CustomerServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phone_number");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        CustomerType customerType = new CustomerType(customer_type_id);
+        CustomerType customerType = new CustomerType(customerTypeId);
         Customer customer = new Customer(id, customerType, name, dateOfBirth, gender, idCard, phoneNumber, email, address);
         boolean check = customerService.editCustomer(customer);
         String mess = "Cập nhật không thành công";

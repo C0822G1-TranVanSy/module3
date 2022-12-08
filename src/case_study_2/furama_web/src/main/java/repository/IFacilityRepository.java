@@ -1,7 +1,6 @@
 package repository;
 
-import model.Customer;
-import model.Facility;
+import model.facility.Facility;
 
 import java.util.List;
 
@@ -17,5 +16,5 @@ public interface IFacilityRepository {
 
     boolean deleteFacility(int id);
 
-    List<Customer> findFacility(String customerName,String customerPhoneNumber, String customerAddress);
+    List<Facility> findFacility(String facilityName, int rentTypeID);
 }
