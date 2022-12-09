@@ -19,7 +19,7 @@
                     <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Employee</a>
+                    <a class="nav-link active" href="/employee">Employee</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/customer">Customer</a>
@@ -28,7 +28,7 @@
                     <a class="nav-link active" href="/facility">Service</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Contract</a>
+                    <a class="nav-link active" href="/contract">Contract</a>
                 </li>
             </ul>
             <form class="d-flex">

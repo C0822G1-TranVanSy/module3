@@ -20,7 +20,7 @@
 <a href="/customer?action=insert" class="btn btn-warning">Thêm mới</a>
 
 <h2 class="d-flex justify-content-center text-danger">Customer List</h2>
-<h3 class="text-success">${mess}</h3>
+<h3 class="text-success" id="mess">${mess}</h3>
 <%--Search--%>
 <form class="d-flex" action="/customer?action=search" method="post">
     <input class="form-control me-2" type="search" placeholder="Search Name" aria-label="Search" name="name">
@@ -32,7 +32,7 @@
 
 <table class="table table-striped table-hover" id="tableStudent">
     <thead>
-    <tr>
+    <tr class="text-center btn-info">
         <th scope="col">STT</th>
         <th scope="col">Customer Type Name</th>
         <th scope="col">Customer Name</th>
@@ -214,11 +214,13 @@
         $('#tableStudent').dataTable( {
             "dom": 'lrtip',
             "lengthChange": false,
-            "pageLength": 5
-        } );
+            "pageLength": 5,
+            // 'text-align':'center'
 
+        } );
         // $("#edit").modal('show');
     } );
+    setTimeout(function() {close(document.getElementById("mess").style.display = "none")}, 5000);
 </script>
 </body>
 </html>

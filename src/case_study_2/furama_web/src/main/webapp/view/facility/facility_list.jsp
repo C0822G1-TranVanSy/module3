@@ -41,7 +41,8 @@
                     <div class="m-2 row">
                         <label class="col-sm-3 col-form-label">Facility Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nameAdd" name="name">
+                            <input type="text" oninput="check()" class="form-control" id="nameAdd" name="name">
+                            <span style="display: none" class="text-danger" id="error">Không đúng định dạng</span>
                         </div>
                     </div>
                     <div class="m-2 row">
@@ -73,37 +74,46 @@
                         </div>
                     </div>
 
-                    <div class="m-2 row" id="standardRoomAdd">
+                    <div id="standardRoomAdd">
+                        <div class="m-2 row">
                         <label class="col-sm-3 col-form-label">Standard Room</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="standard_room">
                         </div>
+                        </div>
                     </div>
-                    <div class="m-2 row" id="descriptionAdd">
+                    <div id="descriptionAdd">
+                    <div class="m-2 row" >
                         <label class="col-sm-3 col-form-label">Description Other Convenience</label>
                         <div class="col-sm-9 ">
                             <input type="text" class="form-control" name="description_other_convenience">
                         </div>
                     </div>
-                    <div class="m-2 row" id="poolAreaAdd">
+                    </div>
+                    <div id="poolAreaAdd">
+                    <div class="m-2 row" >
                         <label class="col-sm-3 col-form-label">Pool Area</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="pool_area">
                         </div>
                     </div>
-                    <div class="m-2 row" id="numberOfFloorsAdd">
+                    </div>
+                    <div id="numberOfFloorsAdd">
+                    <div class="m-2 row" >
                         <label class="col-sm-3 col-form-label">Number of Floors</label>
                         <div class="col-sm-9 ">
                             <input type="text" class="form-control" name="number_of_floors">
                         </div>
                     </div>
-                    <div class="m-2 row" id="facilityFreeAdd">
+                    </div>
+                    <div id="facilityFreeAdd">
+                    <div class="m-2 row" >
                         <label class="col-sm-3  col-form-label">Facility Free</label>
                         <div class="col-sm-9 ">
                             <input type="text" class="form-control" name="facility_free">
                         </div>
                     </div>
-
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -129,7 +139,7 @@
 
 <table class="table table-striped table-hover" id="tableStudent">
     <thead>
-    <tr>
+    <tr class="text-center btn-info">
         <th scope="col">STT</th>
         <th scope="col">Facility Name</th>
         <th scope="col">Area</th>
@@ -303,19 +313,19 @@
 <script>
     function addVilla() {
         document.getElementById("facilityTypeIdAdd").value = 1;
-        document.getElementById("standardRoomAdd").style.display = 'block';
-        document.getElementById("descriptionAdd").style.display = 'block';
-        document.getElementById("poolAreaAdd").style.display = 'block';
-        document.getElementById("numberOfFloorAdd").style.display = 'block';
+        document.getElementById("standardRoomAdd").style.display = 'inline';
+        document.getElementById("descriptionAdd").style.display = 'inline';
+        document.getElementById("poolAreaAdd").style.display = 'inline';
+        document.getElementById("numberOfFloorAdd").style.display = 'inline';
         document.getElementById("facilityFreeAdd").style.display = 'none';
     }
 
     function addHouse() {
         document.getElementById("facilityTypeIdAdd").value = 2;
-        document.getElementById("standardRoomAdd").style.display = 'block';
-        document.getElementById("descriptionAdd").style.display = 'block';
+        document.getElementById("standardRoomAdd").style.display = 'inline';
+        document.getElementById("descriptionAdd").style.display = 'inline';
         document.getElementById("poolAreaAdd").style.display = 'none';
-        document.getElementById("numberOfFloorAdd").style.display = 'block';
+        document.getElementById("numberOfFloorAdd").style.display = 'inline';
         document.getElementById("facilityFreeAdd").style.display = 'none';
 
     }
@@ -326,7 +336,7 @@
         document.getElementById("descriptionAdd").style.display = "none";
         document.getElementById("poolAreaAdd").style.display = "none";
         document.getElementById("numberOfFloorAdd").style.display = "none";
-        document.getElementById("facilityFreeAdd").style.display = "block";
+        document.getElementById("facilityFreeAdd").style.display = "inline";
     }
 
     function infoDelete(id, name) {
@@ -379,11 +389,23 @@
 <script src="../../datatables/js/jquery.dataTables.min.js"></script>
 <script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
 <script>
+    function check(){
+        let name = document.getElementById("nameAdd").value;
+        let reg = /[\w]+/;
+        let reg1 = /^[^0-9]+$/;
+        if(reg.exec(name) && reg1.exec(name)){
+            document.getElementById("nameAdd").style.borderColor = "green";
+            document.getElementById("error").style.display = "none";
+        }else {
+            document.getElementById("nameAdd").style.borderColor = "red";
+            document.getElementById("error").style.display = "inline";
+        }
+    }
     $(document).ready(function () {
         $('#tableStudent').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
-            "pageLength": 5
+            "pageLength": 5,
         });
     });
 </script>
