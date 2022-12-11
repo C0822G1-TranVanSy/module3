@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -78,10 +79,13 @@ public class CustomerServlet extends HttpServlet {
         String address = request.getParameter("address");
         CustomerType customerType = new CustomerType(customerTypeId);
         Customer customer = new Customer(id, customerType, name, dateOfBirth, gender, idCard, phoneNumber, email, address);
-        boolean check = customerService.editCustomer(customer);
+        Map<String,String> error = customerService.editCustomer(customer);
         String mess = "Cập nhật không thành công";
-        if (check) {
+        if (error.isEmpty()) {
             mess = "Cập nhật thành công";
+        }else {
+            request.setAttribute("error",error);
+            request.setAttribute("isModal",true);
         }
         request.setAttribute("mess",mess);
         displayListCustomer(request, response);
@@ -98,10 +102,13 @@ public class CustomerServlet extends HttpServlet {
         String address = request.getParameter("address");
         CustomerType customerType = new CustomerType(customer_type_id);
         Customer customer = new Customer(customerType, name, dateOfBirth, gender, idCard, phoneNumber, email, address);
-        boolean check = customerService.insertCustomer(customer);
+        Map<String,String> error = customerService.insertCustomer(customer);
         String mess = "Thêm mới không thành công";
-        if (check) {
+        if (error.isEmpty()) {
             mess = "Thêm mới thành công";
+        }else {
+            request.setAttribute("error",error);
+            request.setAttribute("isModal",true);
         }
         request.setAttribute("mess",mess);
         request.setAttribute("customerTypeList", customerTypeRepository.findAllCustomerType());

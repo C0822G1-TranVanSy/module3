@@ -125,6 +125,10 @@
                                     <option value="${ct.id}">${ct.name}</option>
                                 </c:forEach>
                             </select>
+                            <c:if test="${!error.isEmpty}">
+                                <span style="color: red" id="error">${error.get("errorName")}</span>
+                            </c:if>
+
                         </div>
                     </div>
                     <div class="m-2 row">
@@ -173,13 +177,14 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="display()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<input type="hidden" id="modal" value="${isModal}">
 
 <script>
     function infoDelete(id, name) {
@@ -215,11 +220,18 @@
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 5,
-            // 'text-align':'center'
-
         } );
-        // $("#edit").modal('show');
     } );
+
+    if($("#modal").val()=="true"){
+        $(document).ready(function () {
+            $("#edit").modal('show');
+        });
+    }
+    function display(){
+        document.getElementById("error").style.display = "none";
+    }
+
     setTimeout(function() {close(document.getElementById("mess").style.display = "none")}, 5000);
 </script>
 </body>

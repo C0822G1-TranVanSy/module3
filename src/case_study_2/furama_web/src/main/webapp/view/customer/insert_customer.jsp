@@ -32,6 +32,7 @@
         <label for="staticName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="staticName" name="name">
+            <span class="text-danger">${error.get("errorName")}</span>
         </div>
     </div>
     <div class="m-2 row">
